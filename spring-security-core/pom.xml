@@ -19,11 +19,16 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-security-oauth2</artifactId>
+                    <groupId>org.springframework.security.oauth</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!--redis-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
         </dependency>
         <!--mysql-->
         <dependency>
@@ -34,6 +39,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <!--spring-social-->
         <dependency>
@@ -52,7 +62,11 @@
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-web</artifactId>
         </dependency>
-
+        <!--配置提示-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
         <!--common-->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -70,6 +84,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
