@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.hujing</groupId>
-            <artifactId>spring-security-app</artifactId>
+            <artifactId>spring-security-browser</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

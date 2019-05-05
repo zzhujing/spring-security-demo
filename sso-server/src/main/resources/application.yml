@@ -1,10 +1,10 @@
 spring:
   application:
     name: sso-server
-  security:
-    user:
-      password: 123456
 server:
   port: 9090
   servlet:
     context-path: /server
+logging:
+  level:
+    com.hujing.sso.server: debug

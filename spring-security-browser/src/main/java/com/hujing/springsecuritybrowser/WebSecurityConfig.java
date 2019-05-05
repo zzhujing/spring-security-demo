@@ -3,8 +3,10 @@ package com.hujing.springsecuritybrowser;
 import com.hujing.springsecuritybrowser.authentication.CustomAuthenticationFailureHandler;
 import com.hujing.springsecuritybrowser.authentication.CustomAuthenticationSuccessHandler;
 import com.hujing.springsecuritybrowser.authentication.CustomSessionExpiredStrategy;
+import com.hujing.springsecuritycore.authorize.AuthorizationConfigManager;
 import com.hujing.springsecuritycore.code.ValidateCodeAuthenticationFilter;
 import com.hujing.springsecuritycore.code.sms.authentication.SmsAuthenticationSecurityConfig;
+import com.hujing.springsecuritycore.constans.SecurityConstants;
 import com.hujing.springsecuritycore.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,9 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private SpringSocialConfigurer springSocialConfigurer;
     @Autowired
     private CustomSessionExpiredStrategy customSessionExpiredStrategy;
+    @Autowired
+    private AuthorizationConfigManager authorizationConfigManager;
 
-        /**
+    /**
      * 配置remember-me
+     *
      * @return
      */
     @Bean
@@ -57,19 +62,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return repository;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .addFilterBefore(validateCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin() //开启表单登录
-                .loginPage("/authentication/required")
-                .loginProcessingUrl("/authentication/signIn")
+                .loginPage(SecurityConstants.LOGIN_PAGE_URL)
+                .loginProcessingUrl(SecurityConstants.LOGIN_PROCESSING_URL)
                 .failureHandler(customAuthenticationFailureHandler)
                 .successHandler(customAuthenticationSuccessHandler)
                 .and()
                 .sessionManagement()
-                .invalidSessionUrl("/session/invalid") //没有session跳转url
+                .invalidSessionUrl(SecurityConstants.INVALID_SESSION_URL) //没有session跳转url
                 .maximumSessions(1)//最大session存在数
                 .expiredSessionStrategy(customSessionExpiredStrategy)
 //                .maxSessionsPreventsLogin(true) //设置智能单台登录
@@ -79,15 +83,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeExpire())
                 .userDetailsService(userDetailsServiceImpl)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/authentication/required", "/code/**", "/authentication/mobile","/user/register",
-                        securityProperties.getBrowser().getLoginPage(),
-                        securityProperties.getSocial().getSignUpUrl()).permitAll() //登录请求不需要身份验证
-                .anyRequest() //表示任意资源都需要授权
-                .authenticated().and().csrf().disable()
+                .and().csrf().disable()
                 .apply(smsAuthenticationSecurityConfig).and()
-                .apply(springSocialConfigurer)
-        ;
+                .apply(springSocialConfigurer);
+        authorizationConfigManager.config(http.authorizeRequests());
     }
 }

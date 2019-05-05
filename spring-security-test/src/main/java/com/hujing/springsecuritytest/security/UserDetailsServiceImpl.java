@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, SocialUserDet
         //这里根据用户名去和数据库交互
         //这里也可以使用自定UserDetails类进行更加详细的定制和返回
         log.info("【表单登录，username : {}】", s);
-        return new CustomUserDetails(s, bCryptPasswordEncoder.encode("hujing"), AuthorityUtils.createAuthorityList("admin"));
+        return new CustomUserDetails(s, bCryptPasswordEncoder.encode("hujing"), AuthorityUtils.createAuthorityList("xxx"));
     }
     /**
      * 社交登录

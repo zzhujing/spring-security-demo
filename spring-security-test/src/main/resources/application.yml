@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: hujing
+    password: 123456
     url: jdbc:mysql://127.0.0.1:3306/spring-security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
   application:
     name: spring-security-test
@@ -16,8 +16,6 @@ spring:
         show-sql: true
   session:
     store-type: redis
-  redis:
-    host: 192.168.18.74
 security:
   properties:
     browser:
