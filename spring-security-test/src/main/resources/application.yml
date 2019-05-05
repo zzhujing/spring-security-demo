@@ -6,3 +6,5 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/spring-security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
   application:
     name: spring-security-test
+  session:
+    store-type: none #\u5173\u95EDspring-session
