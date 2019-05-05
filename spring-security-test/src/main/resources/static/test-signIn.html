@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>browserProperties SignIn</title>
+</head>
+<body>
+<h2>browserProperties SignIn page</h2>
+<!--表单登录-->
+<form action="/authentication/signIn" method="post">
+    <tr>
+        <td>用户名:</td>
+        <td><input name="username" type="text"></td>
+    </tr>
+    <br/>
+    <tr>
+        <td>密码:</td>
+        <td><input name="password" type="password"></td>
+    </tr>
+    <br/>
+    <tr>
+        <td>图形验证码:</td>
+        <td><input name="imageCode" type="text"></td>
+        <td><img src="/code/image"/></td>
+    </tr>
+    <br/>
+    <tr>
+        <td>记住我:</td>
+        <td><input type="checkbox" name="remember-me"></td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="提交"></td>
+    </tr>
+</form>
+
+<hr/>
+<!--表单登录-->
+<form action="/authentication/mobile" method="post">
+    <tr>
+        <td>手机号:</td>
+        <td><input name="mobile" type="text" value="1234567890"></td>
+    </tr>
+    <br/>
+    <tr>
+        <td>验证码:</td>
+        <td><input name="smsCode" type="text"></td>
+        <a href="/code/sms?mobile=1234567890">点击获取验证码</a>
+    </tr>
+    <br/>
+    <tr>
+        <td><input type="submit" value="提交"></td>
+    </tr>
+</form>
+<hr/>
+<!--社交登录-->
+<a href="/qqLogin/callback.do">QQ登录</a>
+</body>
+</html>

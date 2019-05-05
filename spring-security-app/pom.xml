@@ -20,10 +20,6 @@
             <artifactId>spring-security-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

@@ -6,5 +6,41 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/spring-security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
   application:
     name: spring-security-test
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format-sql: true
+        show-sql: true
   session:
-    store-type: none #\u5173\u95EDspring-session
+    store-type: redis
+  redis:
+    host: 192.168.18.74
+security:
+  properties:
+    browser:
+      login-page: /test-signIn.html
+    code:
+      image:
+        length: 1
+        width: 100
+        intercept-path-list:
+          - /user
+          - /user/*
+    social:
+      qq:
+        app-id: wxd99431bbff8305a0
+        app-secret: 60f78681d063590a469f1b297feff3c4
+        providerId: callback.do
+      filter-processes-rl: /qqLogin
+      sign-up-url: /user/register
+    oauth2:
+      clients:
+        - {"clientId":"client" , "clientSecret":"secret","accessTokenValiditySeconds":7200}
+        - {"clientId":"qq" , "clientSecret":"qq","accessTokenValiditySeconds":3600}
+server:
+  servlet:
+    session:
+      timeout: 60  #session超时时间为1分钟

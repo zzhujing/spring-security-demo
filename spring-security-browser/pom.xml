@@ -9,7 +9,7 @@
         <relativePath>../parent-dependencies/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <artifactId>spring-security-browser</artifactId>
-    <name>spring-security-browser</name>
+    <name>spring-security-browserProperties</name>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -19,10 +19,6 @@
             <groupId>com.hujing</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
         </dependency>
     </dependencies>
     <build>

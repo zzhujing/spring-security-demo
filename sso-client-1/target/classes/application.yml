@@ -1,0 +1,16 @@
+security:
+  oauth2:
+    client:
+      client-id: qq
+      client-secret: qq
+      user-authorization-uri: http://localhost:9090/server/oauth/authorize
+      access-token-uri: http://localhost:9090/server/oauth/token
+    resource:
+      jwt:
+        key-uri: http://localhost:9090/server/oauth/token_key
+      user-info-uri: http://127.0.0.1:9090/server/user
+      token-info-uri: http://127.0.0.1:9090/server/oauth/check_token
+server:
+  port: 8080
+  servlet:
+    context-path: /client1
